@@ -5,24 +5,18 @@ $Color = [
     , 'c' => 'Red'
 ];
 //$str = uppercase or lowercase
-function up_and_low(array &$arr, string $str = 'uppercase') : void {
+function up_and_low(array $arr, bool $toUpper = true) : array {
     foreach ($arr as $key => $value){
-        switch ($str){
-            case 'uppercase':
-                $arr[$key] = strtoupper($value);
-                break;
-            case 'lowercase':
+        if($toUpper) {
+            $arr[$key] = strtoupper($value);
+        }else{
                 $arr[$key] = strtolower($value);
-                break;
-            default:
-                echo 'Invalid argument!';
-                break;
         }
     }
-    return;
+    return $arr;
 }
 
-up_and_low($Color, 'lowercase');
+$Color = up_and_low($Color, false);
 echo '<pre>';
 print_r($Color);
 echo '</pre>';
